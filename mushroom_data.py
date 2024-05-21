@@ -58,6 +58,24 @@ import plotly.express as px
 
 mushroom_data.head()
 
+"""# Visualisasi **Data**"""
+
+#Membuat pie chart dengan ukuran size dan kolom "class"
+plt.figure(figsize=[10,10])
+fig = px.pie(mushroom_data,names='class')
+fig.show()
+
+#Multiple count plots yang menunjukkan distribusi kelas untuk setiap fitur dalam dataset
+plt.figure(figsize=(18,55))
+plotnumber = 1
+for col in mushroom_data.columns:
+  plt.subplot(8, 3, plotnumber)
+  sns.countplot(data=mushroom_data, x=col, hue="class")
+  plt.xlabel(col, fontsize=15)
+  plotnumber += 1
+
+plt.show()
+
 """# **Preprocessing Data**"""
 
 #Memisahkan variabel x adalah variabel independen dari dataset
@@ -130,20 +148,7 @@ plt.ylabel("actual values")
 plt.title('Confusion Matrix for DecisionTreeClassifier \n\n')
 plt.show()
 
-"""# Visualisasi **Data**"""
+"""**Hasil Visualisasi Data**
 
-#Membuat pie chart dengan ukuran size dan kolom "class"
-plt.figure(figsize=[10,10])
-fig = px.pie(mushroom_data,names='class')
-fig.show()
-
-#Multiple count plots yang menunjukkan distribusi kelas untuk setiap fitur dalam dataset
-plt.figure(figsize=(18,55))
-plotnumber = 1
-for col in mushroom_data.columns:
-  plt.subplot(8, 3, plotnumber)
-  sns.countplot(data=mushroom_data, x=col, hue="class")
-  plt.xlabel(col, fontsize=15)
-  plotnumber += 1
-
-plt.show()
+Dataset terdiri dari dua kelas utama: jamur beracun dan jamur yang dapat dimakan. Proporsi antara kedua kelas ini harus dianalisis untuk memastikan keseimbangan data dan mempengaruhi strategi pemodelan. Logistic Regression sebagai model klasifikasi dasar. Model ini dilatih pada data yang telah dinormalisasi dan diuji menggunakan data uji. Melalui analisis ini, kita dapat memahami faktor-faktor yang mempengaruhi klasifikasi jamur, serta membangun model yang dapat memprediksi dengan akurasi yang baik apakah suatu jamur beracun atau dapat dimakan. Langkah-langkah preprocessing seperti encoding dan normalisasi data sangat penting untuk mencapai kinerja model yang optimal.
+"""
